@@ -41,11 +41,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addChannelBtnOnClick(view: View) {
-
+        // TODO: add channel functionality
     }
 
     fun sendMsgBtnOnClick(view: View) {
-
+        // TODO: send message functionality
     }
 
 }

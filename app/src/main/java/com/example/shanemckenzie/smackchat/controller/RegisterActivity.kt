@@ -1,9 +1,11 @@
-package com.example.shanemckenzie.smackchat
+package com.example.shanemckenzie.smackchat.controller
 
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.shanemckenzie.smackchat.R
+import com.example.shanemckenzie.smackchat.services.AuthService
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 
@@ -52,7 +54,14 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun registerCreateUserBtnOnClick(view: View) {
-        //TODO: Register user
+        // Register user
+
+        AuthService.registerUser(this,"test@test.com", "123456") { complete ->
+            if(complete) {
+
+            }
+
+        }
     }
 
 }

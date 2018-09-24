@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import com.example.shanemckenzie.smackchat.R
 import com.example.shanemckenzie.smackchat.services.AuthService
+import com.example.shanemckenzie.smackchat.utilities.UserDataService
 import kotlinx.android.synthetic.main.activity_register.*
 import java.util.*
 
@@ -55,15 +56,25 @@ class RegisterActivity : AppCompatActivity() {
 
     fun registerCreateUserBtnOnClick(view: View) {
         // Register user
+        val userName = registerUsernameText.text.toString()
         val email = registerEmailText.text.toString()
         val password = registerPasswordText.text.toString()
+
 
         AuthService.registerUser(this, email, password) { registerSuccess ->
             if(registerSuccess) {
                 AuthService.loginUser(this, email, password) { loginSuccess ->
                     if(loginSuccess) {
-                        println(AuthService.authToken)
-                        println(AuthService.userEmail)
+                        AuthService.createUser(this, userName, email,
+                                userAvatar, avatarColor) { createSuccess ->
+                            if(createSuccess) {
+                                println(UserDataService.name)
+                                println(UserDataService.avatarColor)
+                                println(UserDataService.avatarName)
+                                finish()
+                            }
+
+                        }
                     }
                 }
             }
